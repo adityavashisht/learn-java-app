@@ -1,6 +1,7 @@
 package com.indasil.learnjee.servlet.controller;
 
 
+import com.indasil.learnjee.servlet.model.Address;
 import com.indasil.learnjee.servlet.model.Person;
 
 import javax.servlet.RequestDispatcher;
@@ -17,11 +18,50 @@ import java.io.PrintWriter;
  */
 public class HelloWorldServlet extends HttpServlet {
 
+    /**
+     * GET
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+
     protected void doGet(HttpServletRequest req,
                          HttpServletResponse resp) throws ServletException, IOException {
 
 
-        Person p = new Person("Tofique");
+        Person p = new Person();
+        p.setName("Tofique");
+        p.setAge(22);
+
+        Address address = new Address();
+        address.setStreet("Lee Road");
+
+        p.setAddress(address);
+
+        req.setAttribute("hello", p);
+
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/first.jsp");
+
+        dispatcher.forward(req, resp);
+
+
+
+    }
+
+    /**
+     * POST
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doPost(HttpServletRequest req,
+                         HttpServletResponse resp) throws ServletException, IOException {
+
+
+        Person p = new Person();
+        p.setName("Tofique");
 
         req.setAttribute("hello", p);
 
