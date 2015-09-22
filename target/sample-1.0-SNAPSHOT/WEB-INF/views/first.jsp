@@ -12,5 +12,11 @@
 </head>
 <body>
  ${hello.name}
+<br/>
+${hello.age}
+
+<p>Address</p>
+<br/>
+${hello.address.street}
 </body>
 </html>

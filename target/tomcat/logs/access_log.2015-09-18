@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:15:56:36 -0400] "GET /sample/ HTTP/1.1" 200 379 http-bio-8080-exec-1 26
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:15:56:36 -0400] "GET /sample/assets/js/jquery-1.11.3.min.js HTTP/1.1" 200 95965 http-bio-8080-exec-2 2
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:15:56:36 -0400] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:09:14 -0400] "GET /sample/hello HTTP/1.1" 200 76 http-bio-8080-exec-1 573
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:09:49 -0400] "GET /sample/life HTTP/1.1" 200 3 http-bio-8080-exec-2 1
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:10:11 -0400] "GET /sample/life HTTP/1.1" 200 3 http-bio-8080-exec-1 26
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:10:23 -0400] "GET /sample/hello HTTP/1.1" 200 76 http-bio-8080-exec-2 62
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:27:56 -0400] "GET /sample/hello HTTP/1.1" 404 975 http-bio-8080-exec-1 29
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:28:30 -0400] "GET /sample/hello HTTP/1.1" 200 76 http-bio-8080-exec-1 71
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:35:10 -0400] "GET /sample/hello HTTP/1.1" 200 85 http-bio-8080-exec-1 497
+0:0:0:0:0:0:0:1 - - [18/Sep/2015:16:37:33 -0400] "GET /sample/hello HTTP/1.1" 200 116 http-bio-8080-exec-1 495
