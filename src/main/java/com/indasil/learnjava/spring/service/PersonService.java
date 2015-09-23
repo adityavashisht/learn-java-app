@@ -21,7 +21,8 @@ public class PersonService {
 
     public void addPerson(Person person) {
 
-        String insert = "insert into PERSON values(:id,:name)";
+
+        String insert = "insert into Person values(:id,:name)";
 
         Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("id", person.getId());
@@ -31,5 +32,11 @@ public class PersonService {
         namedParameterJdbcTemplate.update(insert, parameters);
 
 
+    }
+
+    public void getNext() {
+        String q = "select 1 from dual";
+        Integer value = namedParameterJdbcTemplate.queryForObject(q, new HashMap<String, Object>(), Integer.class);
+        System.out.println(value);
     }
 }

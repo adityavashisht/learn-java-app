@@ -2,7 +2,6 @@ package com.indasil.learnjava.spring.config.test;
 
 import com.indasil.learnjava.spring.domain.Person;
 import com.indasil.learnjava.spring.service.PersonService;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +39,10 @@ public class PersonTest {
         p.setName("Ady");
 
         personService.addPerson(p);
+    }
+
+    @Test
+    public void check() {
+        personService.getNext();
     }
 }
