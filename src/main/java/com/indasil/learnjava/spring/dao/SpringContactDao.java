@@ -4,10 +4,16 @@ import com.indasil.learnjava.spring.domain.Contact;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by vashishta on 9/23/15.
@@ -16,6 +22,8 @@ import java.util.List;
 public class SpringContactDao implements ContactDao, InitializingBean {
 
     private JdbcTemplate jdbcTemplate;
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
     private DataSource dataSource;
@@ -39,7 +47,26 @@ public class SpringContactDao implements ContactDao, InitializingBean {
 
     @Override
     public List<Contact> findByFirstName(String firstName) {
-        return null;
+
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("name", firstName);
+
+
+        String namefinder = "select * from contact where FIRST_NAME = :name";
+
+        List<Contact> contacts = namedParameterJdbcTemplate.query(namefinder, parameters, new RowMapper<Contact>() {
+            @Override
+            public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
+                Contact contact = new Contact();
+                contact.setId(rs.getLong(1));
+                return contact;
+            }
+
+        });
+
+        return contacts;
+
     }
 
     @Override
@@ -60,5 +87,6 @@ public class SpringContactDao implements ContactDao, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         jdbcTemplate = new JdbcTemplate(dataSource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 }

@@ -5,11 +5,14 @@ package com.indasil.learnjava.spring.config.test;
  */
 
 import com.indasil.learnjava.spring.dao.SpringContactDao;
+import com.indasil.learnjava.spring.domain.Contact;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,5 +30,11 @@ public class SpringDaoTest {
     public void checkNameById() {
         String name = springContactDao.findFirstNameById(1L);
         System.out.println(name);
+    }
+
+    @Test
+    public void showAllByLikeName() {
+        List<Contact> contactList = springContactDao.findByFirstName("Clarence");
+        System.out.println(contactList.size());
     }
 }
