@@ -4,13 +4,20 @@ package com.indasil.learnjava.spring.domain;
  * Created by vashishta on 9/23/15.
  */
 import java.io.Serializable;
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
+
+
 public class Contact implements Serializable {
+
+
     private Long id;
     private String firstName;
     private String lastName;
     private Date birthDate;
+
+
     private List<ContactTelDetail> contactTelDetails;
     // Getter and setter method omitted
     public String toString() {

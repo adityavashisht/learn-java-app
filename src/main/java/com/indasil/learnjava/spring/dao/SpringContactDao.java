@@ -3,6 +3,7 @@ package com.indasil.learnjava.spring.dao;
 import com.indasil.learnjava.spring.domain.Contact;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -28,15 +29,18 @@ public class SpringContactDao implements ContactDao, InitializingBean {
     @Autowired
     private DataSource dataSource;
 
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+
 
     @Override
     public String findFirstNameById(Long id) {
+
+
+
         String firstName = jdbcTemplate.queryForObject(
                 "select first_name from contact where id = ?",
+
                 new Object[]{id}, String.class);
+
         return firstName;
     }
 
@@ -59,7 +63,11 @@ public class SpringContactDao implements ContactDao, InitializingBean {
             @Override
             public Contact mapRow(ResultSet rs, int rowNum) throws SQLException {
                 Contact contact = new Contact();
-                contact.setId(rs.getLong(1));
+                contact.setId(rs.getLong("id"));
+                contact.setFirstName(rs.getString("first_name"));
+                contact.setLastName(rs.getString("last_name"));
+                contact.setBirthDate(rs.getDate("birth_date"));
+
                 return contact;
             }
 
@@ -71,6 +79,17 @@ public class SpringContactDao implements ContactDao, InitializingBean {
 
     @Override
     public void insert(Contact contact) {
+
+        String insert = "insert into contact (first_name,last_name,birth_date) values(:firstName,:lastName,:birthDate)";
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+        parameters.put("firstName", contact.getFirstName());
+        parameters.put("lastName", contact.getLastName());
+        parameters.put("birthDate", contact.getBirthDate());
+
+        namedParameterJdbcTemplate.update(insert,parameters);
+
+
 
     }
 

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -36,5 +37,15 @@ public class SpringDaoTest {
     public void showAllByLikeName() {
         List<Contact> contactList = springContactDao.findByFirstName("Clarence");
         System.out.println(contactList.size());
+    }
+
+    @Test
+    public void addContact() {
+        Contact contact = new Contact();
+        contact.setFirstName("Ady");
+        contact.setLastName("Vashisht");
+        contact.setBirthDate(new Date());
+
+        springContactDao.insert(contact);
     }
 }
