@@ -19122,14 +19122,19 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="zerotohero"/>
+    <table name="CHANGELOG" schema="" catalog="zerotohero" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="APPLIED_AT" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
     <table name="CONTACT" schema="" catalog="zerotohero" type="TABLE">
       <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="FIRST_NAME" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
       <column name="LAST_NAME" sqlType="VARCHAR" precision="40" scale="0" nullable="false" jdbcType="12"/>
       <column name="BIRTH_DATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
       <primary-key name="PRIMARY" columns="ID"/>
-      <exported-key name="FK_CONTACT_TEL_DETAIL_1" table="CONTACT_TEL_DETAIL" schema="" catalog="zerotohero" columns="CONTACT_ID"/>
-      <index name="UQ_CONTACT_1" unique="true" columns="FIRST_NAME,LAST_NAME"/>
+      <exported-key name="contact_tel_detail_ibfk_1" table="CONTACT_TEL_DETAIL" schema="" catalog="zerotohero" columns="CONTACT_ID"/>
     </table>
     <table name="CONTACT_TEL_DETAIL" schema="" catalog="zerotohero" type="TABLE">
       <column name="ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -19137,8 +19142,7 @@
       <column name="TEL_TYPE" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <column name="TEL_NUMBER" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="ID"/>
-      <foreign-key name="FK_CONTACT_TEL_DETAIL_1" columns="CONTACT_ID" ref-table="CONTACT" ref-schema="" ref-catalog="zerotohero" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="UQ_CONTACT_TEL_DETAIL_1" unique="true" columns="CONTACT_ID,TEL_TYPE"/>
+      <foreign-key name="contact_tel_detail_ibfk_1" columns="CONTACT_ID" ref-table="CONTACT" ref-schema="" ref-catalog="zerotohero" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
   </data-source>
 </component>
