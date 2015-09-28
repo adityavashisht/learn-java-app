@@ -19144,5 +19144,21 @@
       <primary-key name="PRIMARY" columns="ID"/>
       <foreign-key name="contact_tel_detail_ibfk_1" columns="CONTACT_ID" ref-table="CONTACT" ref-schema="" ref-catalog="zerotohero" ref-columns="ID" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
+    <table name="EVENTS" schema="" catalog="zerotohero" type="TABLE">
+      <column name="EVENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="EVENT_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="EVENT_ID"/>
+      <exported-key name="FKkfgw4aqbcklsxohioe05luj0f" table="TECH_TALK" schema="" catalog="zerotohero" columns="EVENT_ID"/>
+    </table>
+    <table name="TECH_TALK" schema="" catalog="zerotohero" type="TABLE">
+      <column name="TECH_TALK_ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="START_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="SPEAKER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EVENT_ID" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="TECH_TALK_ID"/>
+      <foreign-key name="FKkfgw4aqbcklsxohioe05luj0f" columns="EVENT_ID" ref-table="EVENTS" ref-schema="" ref-catalog="zerotohero" ref-columns="EVENT_ID" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKkfgw4aqbcklsxohioe05luj0f" unique="false" columns="EVENT_ID"/>
+    </table>
   </data-source>
 </component>
