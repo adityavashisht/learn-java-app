@@ -12,20 +12,16 @@
 
 <hibernate-mapping package="com.indasil.persistence.domain">
 
-    <class name="Event" table="EVENTS">
-        <id name="id" column="EVENT_ID">
+    <class name="TechTalk" table="TECH_TALK">
+        <id name="id" column="TECH_TALK_ID">
             <generator class="increment"/>
         </id>
-        <property name="date" type="timestamp" column="EVENT_DATE"/>
-        <property name="title" column="TITLE"/>
+        <property name="start" type="timestamp" column="START_DATE"/>
+        <property name="speaker" column="SPEAKER"/>
 
-        
-        
-        <set name="techTalkSet" cascade="save-update" fetch="join" inverse="true">
-            <key column="EVENT_ID"/>
-            <one-to-many class="TechTalk"/>
-        </set>
+        <many-to-one name="event" class="Event" column="EVENT_ID"/>
 
-    </class>
+
+     </class>
 
 </hibernate-mapping>
