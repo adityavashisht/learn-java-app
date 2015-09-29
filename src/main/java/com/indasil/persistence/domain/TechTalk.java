@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by vashishta on 9/28/15.
  */
-public class TechTalk {
+public class TechTalk  {
 
     private Long id;
     private String speaker;

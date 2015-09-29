@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * Created by vashishta on 9/28/15.
  */
-public class Event implements Serializable {
+public class Event implements Serializable, TenantEntity {
 
     private Long id;
     private Date date;

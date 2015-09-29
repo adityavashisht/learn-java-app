@@ -5,6 +5,7 @@ import com.indasil.persistence.domain.TechTalk;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -41,5 +42,32 @@ public class EventServiceTest {
         event.addTechTalk(techTalk);
 
         eventService.saveEvent(event);
+    }
+
+    @Test
+    @Rollback(false)
+    public void testAddViaParent() {
+
+        TechTalk techTalk = new TechTalk();
+
+        techTalk.setSpeaker("Ady");
+        techTalk.setStart(new Date());
+
+
+        eventService.addTalkViaParent(1L, techTalk);
+    }
+
+
+    @Test
+    @Rollback(false)
+    public void testViaChild() {
+
+        TechTalk techTalk = new TechTalk();
+
+        techTalk.setSpeaker("Ady");
+        techTalk.setStart(new Date());
+
+
+        eventService.addTechTalk(1L, techTalk);
     }
 }

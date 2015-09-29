@@ -21,7 +21,7 @@
 
         
         
-        <set name="techTalkSet" cascade="save-update" fetch="join" inverse="true">
+        <set name="techTalkSet" cascade="all-delete-orphan" fetch="join" inverse="true">
             <key column="EVENT_ID"/>
             <one-to-many class="TechTalk"/>
         </set>
